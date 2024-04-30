@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankTracker - Achieve Your Financial Goals</title>
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer ul {
+            list-style-type: none;
+        }
+
+        footer ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* Additional styles */
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        button {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        #progress-bar {
+            background-color: #007bff;
+            height: 20px;
+            width: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>BankTracker - Achieve Your Financial Goals</h1>
+    </header>
+
+    <section id="goal-setting">
+        <h2>Goal Setting</h2>
+        <br/>
+        <br/>
+        <form id="goal-form">
+            <label for="goal-name" style="font-size: 25px;">Goal Name:</label>
+            <br/>
+            <br/>
+            <input type="text" id="goal-name" required>
+            <label for="target-amount" style="font-size: 25px;">Target Amount:</label>
+            <br/>
+            <br/>
+            <input type="number" id="target-amount" required>
+            <label for="target-date" style="font-size: 25px;">Target Date:</label>
+            <br/>
+            <br/>
+            <input type="date" id="target-date" required>
+            <button type="submit">Set Goal</button>
+        </form>
+    </section>
+
+    <section id="progress-tracking">
+        <h2>Progress Tracking</h2>
+        <div id="progress-bar"></div>
+        <div id="statistics"></div>
+    </section>
+
+    <footer>
+       Copyrights reserved at @2022Banking things
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const goalForm = document.getElementById('goal-form');
+            const progressBar = document.getElementById('progress-bar');
+            const statistics = document.getElementById('statistics');
+
+            goalForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const goalName = document.getElementById('goal-name').value;
+                const targetAmount = document.getElementById('target-amount').value;
+                const targetDate = document.getElementById('target-date').value;
+
+                // Dummy implementation for progress bar
+                const progress = Math.random() * 100; // Random progress percentage
+                progressBar.style.width = progress + '%';
+
+                // Dummy implementation for statistics
+                statistics.innerHTML = `
+                    <p>Current Progress: ${progress.toFixed(2)}%</p>
+                    <p>Target Amount: $${targetAmount}</p>
+                    <p>Target Date: ${targetDate}</p>
+                `;
+            });
+        });
+    </script>
+</body>
+</html>

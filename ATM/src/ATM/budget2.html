@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+     <!-- Bootstrap CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <!-- custom stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 align="center">Personalised Expenses Tracker</h1>
+            <!-- Budget Entry Section -->
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Budget Entry</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="date">Date:</label>
+                                <input type="date" class="form-control" id="date">
+                            </div>
+                            <div class="form-group">
+                                <label for="reason">Reason:</label>
+                                <input type="text" class="form-control" id="reason">
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Amount:</label>
+                                <input type="number" class="form-control" id="amount">
+                            </div>
+                            <button type="submit" class="btn btn-primary" onclick="appendExpense()">Submit</button>
+                        </form>
+        </div>
+    </div>
+    </div>
+    <hr/>
+    <h2 align="center">Your Expenses</h2>
+    <div class="container">
+    <ul id="listadd">
+        <!-- <li class="checked">Task1</li>
+         <li>Task1</li>
+         <li>Task1</li>-->
+     </ul>
+     </div>
+
+    <!-- Bootstrap JS (Popper.js and Bootstrap JS) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const date=document.getElementById("date");
+            const reason=document.getElementById("reason");
+            const amount=document.getElementById("amount");
+        function appendExpense(){
+            if(date.value==""){
+                alert("You need to enter date");
+            }
+            if(amount.value==""){
+                alert("You need to enter amount");
+            }
+            if(reason.value==""){
+                alert("You need to enter reason");
+            }
+            else {
+        let li = document.createElement("li");
+        li.innerHTML = date.value+" "+reason.value+" "+amount.value;
+        listadd.appendChild(li);
+        let span=document.createElement("span");
+        span.innerHTML='\u00d7';
+        li.appendChild(span);
+        date.value = '';
+        amount.value='';
+        reason.value='';
+        saveData();
+            }
+        }
+        function saveData(){
+    localStorage.setItem("data",listadd.innerHTML);
+}
+listadd.addEventListener("click",function(e){
+if(e.target.tagName==="LI"){
+    e.target.classList.toggle("checked");
+    saveData();
+}
+else if(e.target.tagName==="SPAN"){
+e.target.parentElement.remove();
+saveData();
+}
+},false);
+function showtask(){
+    listadd.innerHTML=localStorage.getItem("data");
+}
+showtask();
+    </script>
+</body>
+</html>
